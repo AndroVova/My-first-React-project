@@ -1,15 +1,16 @@
 import "./Expenses.css";
 import TestComp from "./ExpensesItem";
+import Card from "./Card";
 
 function Expenses(props) {
   return (
-    <div className="expenses"> 
-        {props.items.map(function (item) {
+    <Card className="expenses"> 
+        {props.items.map((item) => {
           return (
             <TestComp title={item.title} date={item.date} price={item.price} />
           );
         })}   
-    </div>
+    </Card>
   );
 }
 
