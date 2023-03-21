@@ -1,16 +1,25 @@
 import "./App.css";
-import Expenses from "./components/Expenses";
-import Item from './Item'
+
+import Expenses from "./components/expenses/Expenses";
+import NewExpense from "./components/newExpense/NewExpense";
+import Item from "./entities/Item";
 
 function App() {
   const items = [
-    new Item(new Date(), "Lol&Co", 250), 
-    new Item(new Date(), "Kek&Co", 300)
+    new Item("01", new Date(), "Lol&Co", 250),
+    new Item("02", new Date(), "Kek&Co", 300),
   ];
+
+  function addExpenseHandler(expense) {
+    console.log("In App.js");
+    console.log(expense);
+  }
+
   return (
     <div className="App">
       <h1>My first React App!</h1>
-      <Expenses items={items}/>
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={items} />
     </div>
   );
 }
