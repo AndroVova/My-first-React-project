@@ -1,5 +1,6 @@
 import "./ExpenseForm.css";
 import React, { useState } from "react";
+import Item from "../../entities/Item";
 
 function ExpenseForm(props) {
   const [enteredTitle, setTitle] = useState("");
@@ -36,11 +37,12 @@ function ExpenseForm(props) {
   function submitHandler(event) {
     event.preventDefault();
 
-    const expenseData = {
-      title: enteredTitle,
-      price: enteredAmount,
-      date: new Date(enteredDate),
-    };
+    const expenseData = new Item(
+      Math.random().toString(),
+      new Date(enteredDate),
+      enteredTitle,
+      enteredAmount
+    );
     props.onSaveExpenseData(expenseData);
     setTitle("");
     setAmount("");
@@ -80,6 +82,7 @@ function ExpenseForm(props) {
         </div>
       </div>
       <div className="new-expense__actions">
+      <button type="button" onClick={props.stopEditing}>Cancel</button>
         <button type="submit">Accept</button>
       </div>
     </form>
